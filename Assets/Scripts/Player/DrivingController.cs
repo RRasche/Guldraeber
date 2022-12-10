@@ -17,15 +17,18 @@ public class DrivingController : PlayerController
         transform.up = Vector2.up;
     }
 
-    protected void drive()
+    protected void drive() {
+        drive(1);
+    }
+
+    protected void drive(float speedMultiplier)
     {
         Vector2 moveDir = this._moveDir;
 
         Vector2 oldVel = rigidbody2D.velocity;
-        Vector2 targetVel = moveDir * speed;
+        Vector2 targetVel = moveDir * speed * speedMultiplier;
 
         Vector2 vel = Vector2.Lerp(oldVel, targetVel, acceleration * Time.deltaTime);
-
         rigidbody2D.velocity = vel;
         if (moveDir.sqrMagnitude > 0)
         {

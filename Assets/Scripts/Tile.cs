@@ -150,6 +150,10 @@ public class Tile : MonoBehaviour
         print(gameObject.name + " is feeling very extinguished");
     }
 
+    public void Demolish_Me_a_BIT(float strength) {
+        print(gameObject.name + " is feeling very demolished");
+    }
+
     private void update_burn_idx(int range)
     {
          if(range == 1)
