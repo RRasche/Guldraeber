@@ -17,6 +17,17 @@ public class Tile : MonoBehaviour
     }
     
     public TileType type;
+    private int[] index;
+
+    public int[] GetIndex(){
+        return index;
+    }
+
+    public void SetIndex(int x, int y){
+        index = new int[2];
+        index[0] = x;
+        index[1] = y;
+    }
 
 
 
