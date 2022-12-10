@@ -66,7 +66,7 @@ public class MapGenerator : MonoBehaviour
         return map[ind.y][ind.x];
     }
 
-    private void RebuildMap()
+    public void RebuildMap()
     {
         map = new Tile [height][];
         for(int i = 0; i < height; ++i)
