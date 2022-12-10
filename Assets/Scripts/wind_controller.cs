@@ -4,33 +4,50 @@ using UnityEngine;
 
 public class wind_controller : MonoBehaviour
 {
+    public static Vector2 cur_wind_direction;
 
+    [SerializeField]
+    public float windMean = 0.0f;
     Vector2 new_direction;
     Vector2 old_direction;
-
     float changeWind;
+
+    // Variables for the animation function
+    bool animating;
+    float fn_val;
+    float t;
+    float x;
+
+     private IEnumerator animated;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        animating = false;
+        cur_wind_direction = new Vector2(0.0f, 0.0f);
         old_direction = new Vector2(0.0f, 0.0f);
         new_direction = new Vector2(0.0f, 0.0f);
-        generate_wind();
 
-        changeWind = Time.time + Random.Range()
+        changeWind = Time.time + Random.Range(7.0f, 15.0f);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if(!animating)
+        {
+            generate_wind();
+        }
+
+        animate_direction();
     }
+
 
     void generate_wind()
     {
         old_direction = new_direction;
         new_direction.x = Random.Range(0.0f , 1.0f);
-        new_direction.y = Random.Range(0.0f , 2.0f * Mathf.PI);
+        new_direction.y = inverse_cauchy_cdf(Random.Range(0.0f , 1.0f));
     }
 
 
@@ -60,11 +77,40 @@ public class wind_controller : MonoBehaviour
         }
     }
 
-    void animate_direction(float t)
+    void animate_direction()
     {
-         float fn_val;
-         fn_val = t < 0.5f ? (1.0f - bounc_fn(1.0f - 2.0f * t)) / 2.0f : (1.0f + bounc_fn(2.0f * t - 1.0f)) / 2.0f;
+        if(!animating)
+        {
+            t = Time.time;
+            x = 0.0f; 
+            animating = true;
+        }
+        else if(x >=1)
+        {
+            animating = false;
+        }
+        
+
+        float duration = changeWind - t; 
+        Vector2 change_amount = new_direction - old_direction;
 
 
+        fn_val = x < 0.5f ? (1.0f - bounc_fn(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounc_fn(2.0f * x - 1.0f)) / 2.0f;
+        
+        x += (Time.time - t) / duration; 
+
+        cur_wind_direction.y = old_direction.x + fn_val * change_amount.x; 
+        cur_wind_direction.y = old_direction.y + fn_val * change_amount.y;
+    }
+
+    float inverse_cauchy_cdf(float u)
+    {
+        
+        float gamma = 0.7f;
+
+        float val =  gamma * Mathf.Tan(Mathf.PI * (u - 0.5f));
+
+        return val + windMean;
+        
     }
 }
