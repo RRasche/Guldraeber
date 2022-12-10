@@ -112,6 +112,11 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void Extinguish_Me_a_BIT(float strength)
+    {
+        print(gameObject.name + " is feeling very extinguished");
+    }
+
     private void update_burn_idx(int range)
     {
          if(range == 1)

@@ -5108,6 +5108,8 @@ MonoBehaviour:
   turnAcceleration: 6
   waterGun: {fileID: 5558568056750001723}
   waterGunTurnSpeed: 6
+  waterGunRange: 5
+  burningLayer: Default
 --- !u!1 &7496461376256006915
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class FlyingController : PlayerController
     [SerializeField] private float climbSpeed = 1;
     [SerializeField] private float turnAcceleration = 6;
     [SerializeField] private float acceleration = 1;
-
+    [SerializeField] private float extinguishStrength = 3;
 
     [SerializeField] private float flyingHeight = 3;
 
@@ -38,7 +38,13 @@ public class FlyingController : PlayerController
         transform.forward = rigidbody2D.velocity;
         //transform.right += Vector3.forward * moveDir.x * .3f;
         transform.localEulerAngles = new Vector3(moveDir.y * 10, transform.localEulerAngles.y, -moveDir.x * 30);
+     
         
+        if (this._firePressed > 0.5)
+        {
+            MapGenerator.GetTileAtPosition(transform.position).Extinguish_Me_a_BIT(extinguishStrength);
+        }
+
     }
 
     //https://forum.unity.com/threads/whats-the-best-way-to-rotate-a-vector2-in-unity.729605/

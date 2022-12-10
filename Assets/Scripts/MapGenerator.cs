@@ -62,6 +62,12 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    public static Tile GetTileAtPosition(Vector2 pos)
+    {
+        // TODO: Implement
+        return map[1000][1000];
+    }
+
     public static Tile GetTileByIndex(Vector2Int ind){
         return map[ind.y][ind.x];
     }

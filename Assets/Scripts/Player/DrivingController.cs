@@ -25,7 +25,7 @@ public class DrivingController : PlayerController
         Vector2 targetVel = moveDir * speed;
 
         Vector2 vel = Vector2.Lerp(oldVel, targetVel, acceleration * Time.deltaTime);
-        print(vel);
+
         rigidbody2D.velocity = vel;
         if (moveDir.sqrMagnitude > 0)
         {
