@@ -102,7 +102,10 @@ MonoBehaviour:
   - {fileID: 6877393147656916345, guid: 8cf606f6f681dc042b6e425daefa4e19, type: 3}
   - {fileID: 6877393147656916345}
   - {fileID: 6877393147656916345, guid: 1a313e3e7906578448e8f014f3f03029, type: 3}
+  burn_increase: 1
   type: 2
+  burning_state: 0
+  self_idx: {x: 0, y: 0}
 --- !u!1001 &7179678874561540185
 PrefabInstance:
   m_ObjectHideFlags: 0
