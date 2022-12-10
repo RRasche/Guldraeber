@@ -7,6 +7,9 @@ public class wind_controller : MonoBehaviour
     public static Vector2 cur_wind_direction;
 
     [SerializeField]
+    public Vector2 wind_direction_temp;
+
+    [SerializeField]
     public float windMean = 0.0f;
     Vector2 new_direction;
     Vector2 old_direction;
@@ -27,8 +30,6 @@ public class wind_controller : MonoBehaviour
         cur_wind_direction = new Vector2(0.0f, 0.0f);
         old_direction = new Vector2(0.0f, 0.0f);
         new_direction = new Vector2(0.0f, 0.0f);
-
-        changeWind = Time.time + Random.Range(7.0f, 15.0f);
     }
 
     // Update is called once per frame
@@ -40,6 +41,7 @@ public class wind_controller : MonoBehaviour
         }
 
         animate_direction();
+        wind_direction_temp = cur_wind_direction;
     }
 
 
@@ -48,6 +50,7 @@ public class wind_controller : MonoBehaviour
         old_direction = new_direction;
         new_direction.x = Random.Range(0.0f , 1.0f);
         new_direction.y = inverse_cauchy_cdf(Random.Range(0.0f , 1.0f));
+        changeWind = Time.time + Random.Range(7.0f, 15.0f);
     }
 
 
@@ -88,24 +91,23 @@ public class wind_controller : MonoBehaviour
         else if(x >=1)
         {
             animating = false;
+            return;
         }
         
 
         float duration = changeWind - t; 
         Vector2 change_amount = new_direction - old_direction;
 
+        x = (Time.time - t) / duration; 
 
         fn_val = x < 0.5f ? (1.0f - bounc_fn(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounc_fn(2.0f * x - 1.0f)) / 2.0f;
         
-        x += (Time.time - t) / duration; 
-
-        cur_wind_direction.y = old_direction.x + fn_val * change_amount.x; 
+        cur_wind_direction.x = old_direction.x + fn_val * change_amount.x; 
         cur_wind_direction.y = old_direction.y + fn_val * change_amount.y;
     }
 
     float inverse_cauchy_cdf(float u)
     {
-        
         float gamma = 0.7f;
 
         float val =  gamma * Mathf.Tan(Mathf.PI * (u - 0.5f));

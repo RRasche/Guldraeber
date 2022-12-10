@@ -101,4 +101,7 @@ MonoBehaviour:
   - {fileID: 6877393147656916345}
   - {fileID: 6877393147656916345, guid: 81b1297b1a2b3db4fb47ba0f05fd52c4, type: 3}
   - {fileID: 6877393147656916345, guid: 1a313e3e7906578448e8f014f3f03029, type: 3}
+  burn_increase: 1
   type: 1
+  burning_state: 0
+  self_idx: {x: 0, y: 0}
