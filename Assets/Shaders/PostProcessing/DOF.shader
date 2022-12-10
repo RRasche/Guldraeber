@@ -53,11 +53,11 @@ Shader "PostProcessing/DOF"
                 //return fixed4(diff, 0, 0, 1);
                 //float deviation = log(
                 //    abs(sqrt(depth*1000) - _TargetDistance) / 10000);
-                float td = depth;
-                float linDepth = _TargetDistance / 1000;
-                float deviation = 2 * td - (linDepth * linDepth) / td - linDepth;
+                float td = _TargetDistance;
+                float linDepth = sqrt(depth);
+                float deviation = td - (linDepth * linDepth) / td;
                 deviation *= 1;
-                deviation = saturate(deviation);
+                //deviation = saturate(deviation);
 
                 float3 col = float3(0, 0, 0);
                 col.x += tex2D(_MainTex, i.uv).x * 0.66;
@@ -74,7 +74,7 @@ Shader "PostProcessing/DOF"
                 //col = float3(1.7,1.8,1.9)*col/(1.0+col);
                 
 	            //return fixed4(pow(col,(1.0)/(_TargetDistance)), 1.0);
-                return fixed4(abs(deviation), 0, 0, 1);
+                return fixed4(saturate(abs(deviation)), 0, 0, 1);
             }
             ENDCG
         }
