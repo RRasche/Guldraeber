@@ -34,7 +34,11 @@ public class MapGenerator : MonoBehaviour
             float h = startingLocation.y - ((float) height - 1) / 2 * outerRadius + i * outerRadius * 1.5f;
             for(int j = 0; j < map[i].Length; j++){
                 float w = startingLocation.x - ((float) width - 1) / 2 * innerRadius + innerRadius * (i % 2) + j * 2 * innerRadius;
+                #if UNITY_EDITOR
                 GameObject tile = PrefabUtility.InstantiatePrefab(hexPrefab) as GameObject;
+                #else
+                GameObject tile = Instantiate(hexPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                #endif
                 tile.transform.position = new Vector3(w, h, 0.5f);
                 tile.transform.parent = mapObj.transform;
                 Tile tl = tile.GetComponent<Tile>();

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 [CanEditMultipleObjects]
+#endif
 public class Tile : MonoBehaviour
 {
     
@@ -47,8 +48,11 @@ public class Tile : MonoBehaviour
     }
     
     public void ChangeTile(){
-        
+        #if UNITY_EDITOR
         GameObject newTile = PrefabUtility.InstantiatePrefab(prefabs[(int)type]) as GameObject;
+        #else
+        GameObject newTile = Instantiate(prefabs[(int)type], new Vector3(0, 0, 0), Quaternion.identity);
+        #endif
         newTile.transform.position = transform.position;
         newTile.transform.parent = transform.parent;
         Tile tl = newTile.GetComponent<Tile>();
