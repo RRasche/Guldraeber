@@ -7,6 +7,8 @@ public class FlyingController : PlayerController
     [SerializeField] private float speed = 3;
     [SerializeField] private float climbSpeed = 1;
     [SerializeField] private float turnAcceleration = 6;
+    [SerializeField] private float acceleration = 1;
+
 
     [SerializeField] private float flyingHeight = 3;
 
@@ -28,9 +30,10 @@ public class FlyingController : PlayerController
         transform.position += Vector3.forward * moveDir.y * Time.deltaTime * climbSpeed;
 
 
+        float lastVel = rigidbody2D.velocity.magnitude;
         Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.deltaTime);
 
-        rigidbody2D.velocity = vel.normalized * speed;
+        rigidbody2D.velocity = vel.normalized * Mathf.Lerp(lastVel, speed * (1 - moveDir.x * moveDir.x * .5f), acceleration*Time.deltaTime);
  
         transform.forward = rigidbody2D.velocity;
         //transform.right += Vector3.forward * moveDir.x * .3f;
