@@ -82,9 +82,10 @@ public class Tile : MonoBehaviour
 
             for(int i_range = 1; i_range <= range; ++i_range)
             {
-                neighbor_case = (int) (wind_direction.y * i_range * 3.0f / Mathf.PI + 
-                    0.5f * (i_range + 1 % 2) + Random.Range(-Mathf.PI/3, Mathf.PI/3));
-                
+                neighbor_case = (int) ((wind_direction.y + Random.Range(-Mathf.PI/3.0f, Mathf.PI/3.0f)) * i_range * 3.0f / Mathf.PI + 
+                    0.5f);
+                neighbor_case = neighbor_case % (6 * i_range);
+
                 burn_idx = self_idx;
 
                 update_burn_idx(i_range);
@@ -152,10 +153,11 @@ public class Tile : MonoBehaviour
                 
                 case 4:
                     burn_idx.x -= 1 - off_row;
-                    burn_idx.y += 1;
+                    burn_idx.y -= 1;
                     break;
 
                 case 5:
+                    burn_idx.x += off_row;
                     burn_idx.y -= 1;
                     break;
             }
@@ -183,14 +185,14 @@ public class Tile : MonoBehaviour
                     burn_idx.y += 2;
                     break;
                 case 5:
-                    burn_idx.x -= 2 + off_row;
+                    burn_idx.x -= 2 - off_row;
                     burn_idx.y += 1;
                     break;
                 case 6:
                     burn_idx.x -= 2;
                     break;
                 case 7:
-                    burn_idx.x -= 2 + off_row;
+                    burn_idx.x -= 2 - off_row;
                     burn_idx.y -= 1;
                     break;
                 case 8:
