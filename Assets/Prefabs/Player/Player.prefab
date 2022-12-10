@@ -146,7 +146,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   playerPrefabs:
   - {fileID: 7161814176645196761, guid: fdd7d04f84352ca49870cba70a2baa48, type: 3}
-  - {fileID: 7161814176645196761, guid: 74aa8a22ff73d1c4bb1c51fb1468e9c2, type: 3}
+  - {fileID: 7161814176645196761, guid: a7b49913698567f48b2560a74ab58071, type: 3}
   - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
   - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
   playerCamera: {fileID: 7998891971673416604}
