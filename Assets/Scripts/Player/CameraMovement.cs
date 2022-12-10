@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform;
+    private Transform playerTransform;
     
     private Vector3 _distanceToPlayer;
 
     // Start is called before the first frame update
-    void Start()
+    public void setPlayerTransform(Transform playertransform)
     {
+        this.playerTransform = playertransform;
         this._distanceToPlayer = transform.position - playerTransform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerTransform.position + this._distanceToPlayer;
+        if (playerTransform != null) { 
+            transform.position = playerTransform.position + this._distanceToPlayer;
+        }
     }
 }
