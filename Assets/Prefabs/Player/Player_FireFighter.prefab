@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1492167723442445314}
   - component: {fileID: 7752086500266166954}
   - component: {fileID: 4146193073375330462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 6396395383896708815}
   - component: {fileID: 2437620502251647993}
   - component: {fileID: 8732099028766752457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4933,7 @@ GameObject:
   - component: {fileID: 7161814176445387331}
   - component: {fileID: 7161814176445387330}
   - component: {fileID: 7161814176445387329}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,7 +5030,7 @@ GameObject:
   - component: {fileID: 6373243994765925608}
   - component: {fileID: 3963906153749768280}
   - component: {fileID: 5513208714112923699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_FireFighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5120,7 +5120,7 @@ GameObject:
   - component: {fileID: 1016071950383441421}
   - component: {fileID: 2533109895921119833}
   - component: {fileID: 4845481342480349823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
