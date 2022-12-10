@@ -15,5 +15,8 @@ public class MapGeneratorEditor : Editor
         {
             myScript.GenerateMap();
         }
+        if(GUILayout.Button("Update Tiles")){
+            myScript.UpdateTiles();
+        }
     }
 }
