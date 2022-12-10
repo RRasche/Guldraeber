@@ -28,4 +28,12 @@ public class Player : MonoBehaviour
             controller.ChangeMoveDir(context.ReadValue<Vector2>());
         }
     }
+
+    public void ChangeLookInput(InputAction.CallbackContext context)
+    {
+        if (controller)
+        {
+            controller.ChangeLookDir(context.ReadValue<Vector2>());
+        }
+    }
 }

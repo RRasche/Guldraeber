@@ -31,12 +31,11 @@ public class FlyingController : PlayerController
         Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.deltaTime);
 
         rigidbody2D.velocity = vel.normalized * speed;
-        if (moveDir.sqrMagnitude > 0)
-        {
-            transform.forward = rigidbody2D.velocity;
-            //transform.right += Vector3.forward * moveDir.x * .3f;
-            transform.localEulerAngles = new Vector3(moveDir.y * 20, transform.localEulerAngles.y, -moveDir.x * 30);
-        }
+ 
+        transform.forward = rigidbody2D.velocity;
+        //transform.right += Vector3.forward * moveDir.x * .3f;
+        transform.localEulerAngles = new Vector3(moveDir.y * 10, transform.localEulerAngles.y, -moveDir.x * 30);
+        
     }
 
     //https://forum.unity.com/threads/whats-the-best-way-to-rotate-a-vector2-in-unity.729605/

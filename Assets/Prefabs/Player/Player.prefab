@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   playerPrefabs:
-  - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
+  - {fileID: 7161814176645196761, guid: fdd7d04f84352ca49870cba70a2baa48, type: 3}
   - {fileID: 7161814176645196761, guid: c270295d796cedb40b11dab1a7d500f7, type: 3}
   - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
   - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
@@ -192,7 +192,19 @@ MonoBehaviour:
     m_ActionId: dd681fb7-3520-47f3-b4e2-b13435351949
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7142816304764578329}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: ChangeLookInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4ba02c14-6980-490d-b0d5-2ff647d771f7
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick,/Mouse/delta]
   - m_PersistentCalls:
