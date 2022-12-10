@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Tile))]
 [CanEditMultipleObjects]
 public class TileEditor : Editor
@@ -22,8 +23,9 @@ public class TileEditor : Editor
         //}
         if(GUILayout.Button("Get Index"))
         {
-            int[] ind = myScript.GetIndex();
-            Debug.Log("[" + ind[0] + ", " + ind[1] + "]");
+            Vector2Int ind = myScript.GetIndex();
+            Debug.Log("[" + ind.x + ", " + ind.y + "]");
         }
     }
 }
+#endif
