@@ -100,7 +100,8 @@ public class wind_controller : MonoBehaviour
 
         x = (Time.time - t) / duration; 
 
-        fn_val = x < 0.5f ? (1.0f - bounc_fn(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounc_fn(2.0f * x - 1.0f)) / 2.0f;
+        fn_val = x < 0.5f ? 4.0f * x * x * x : 1.0f - Mathf.Pow(-2.0f * x + 2.0f, 3.0f) / 2.0f;
+        //fn_val = x < 0.5f ? (1.0f - bounc_fn(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounc_fn(2.0f * x - 1.0f)) / 2.0f;
         
         cur_wind_direction.x = old_direction.x + fn_val * change_amount.x; 
         cur_wind_direction.y = old_direction.y + fn_val * change_amount.y;
@@ -108,7 +109,7 @@ public class wind_controller : MonoBehaviour
 
     float inverse_cauchy_cdf(float u)
     {
-        float gamma = 0.7f;
+        float gamma = 0.3f;
 
         float val =  gamma * Mathf.Tan(Mathf.PI * (u - 0.5f));
 

@@ -49,7 +49,7 @@ public class MapGenerator : MonoBehaviour
                 tl.prefabs = prefabs;
             }
         }
-        mapObj.transform.rotation = Quaternion.Euler(0.0f,180.0f,0.0f);
+        //mapObj.transform.rotation = Quaternion.Euler(0.0f,180.0f,0.0f);
 
     }
 
@@ -72,7 +72,7 @@ public class MapGenerator : MonoBehaviour
         return map[ind.y][ind.x];
     }
 
-    private void RebuildMap()
+    public void RebuildMap()
     {
         map = new Tile [height][];
         for(int i = 0; i < height; ++i)
