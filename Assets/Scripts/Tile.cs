@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
         #if UNITY_EDITOR
         GameObject newTile = PrefabUtility.InstantiatePrefab(prefabs[(int)type]) as GameObject;
         #else
-        GameObject newTile = Instantiate(prefabs[(int)type], new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject newTile = Instantiate(prefabs[(int)type], new Vector3(0, 0, 0), Quaternion.Euler(-90.0f,0.0f,0.0f));
         #endif
         newTile.transform.position = transform.position;
         newTile.transform.parent = transform.parent;

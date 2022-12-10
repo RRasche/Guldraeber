@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Andi.unity
     guid: b6dba4b63d243234ab5a6b79f8cc97a9
+  - enabled: 1
+    path: Assets/Scenes/BasicScene.unity
+    guid: d5320f5b0bd7bf5419d71648337921a4
   m_configObjects: {}

@@ -22,5 +22,4 @@ public class MapGeneratorEditor : Editor
         }
     }
 }
-
 #endif
