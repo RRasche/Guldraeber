@@ -7,8 +7,8 @@ using UnityEditor;
 public class Tile : MonoBehaviour
 {
     
-    [SerializeField]
-    public GameObject[] prefabs = new GameObject[4];
+    public GameObject[] prefabs;
+    private Tile[][] map;
     public enum TileType{
         DEFAULT = 0,
         GRASS = 1,
@@ -17,25 +17,35 @@ public class Tile : MonoBehaviour
     }
     
     public TileType type;
-    private int[] index;
+    private int[] index = new int[2];
 
     public int[] GetIndex(){
         return index;
     }
 
+    public void SetMap(Tile[][] m){
+        map = m;
+    }
+
     public void SetIndex(int x, int y){
-        index = new int[2];
         index[0] = x;
         index[1] = y;
     }
+    
 
 
 
 
-    public void ChangeTile(){
+    public void ChangeTile(GameObject[] pre){
+        
         GameObject newTile = PrefabUtility.InstantiatePrefab(prefabs[(int)type]) as GameObject;
-        newTile.transform.position = this.transform.position;
-        newTile.transform.parent = this.transform.parent;
+        newTile.transform.position = transform.position;
+        newTile.transform.parent = transform.parent;
+        Tile tl = newTile.GetComponent<Tile>();
+        map[index[0]][index[1]] = tl;
+        tl.SetIndex(index[0],index[1]);
+        tl.SetMap(map);
+        tl.prefabs = prefabs;
         DestroyImmediate(gameObject);
     }
 }

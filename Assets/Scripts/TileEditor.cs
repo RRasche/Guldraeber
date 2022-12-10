@@ -8,21 +8,22 @@ using UnityEditor;
 public class TileEditor : Editor
 {
 
-    SerializedProperty type;
-
     void OnEnable(){
         serializedObject.FindProperty("type");
     }
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
         DrawDefaultInspector();
 
         Tile myScript = (Tile)target;
-        if(GUILayout.Button("Change Tile"))
+        //if(GUILayout.Button("Change Tile"))
+        //{
+        //    myScript.ChangeTile();
+        //}
+        if(GUILayout.Button("Get Index"))
         {
-            myScript.ChangeTile();
+            int[] ind = myScript.GetIndex();
+            Debug.Log("[" + ind[0] + ", " + ind[1] + "]");
         }
-        serializedObject.ApplyModifiedProperties();
     }
 }

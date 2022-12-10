@@ -14,14 +14,13 @@ public class MapGenerator : MonoBehaviour
     public Vector3 startingLocation = new Vector3(0,0,0);
 
     public static Tile[][] map;
-    public Vector3[][] coordinateMap;
+    [SerializeField]
+    private GameObject[] prefabs;
 
     public void GenerateMap(){
         map = new Tile[height][];
-        coordinateMap = new Vector3[height][];
         for(int i = 0; i < height; i++){
             map[i] = new Tile[width - i % 2];
-            coordinateMap[i] = new Vector3[width - i % 2];
         }
         GameObject mapObj = new GameObject();
         mapObj.name = "TileMap";
@@ -39,12 +38,21 @@ public class MapGenerator : MonoBehaviour
                 Tile tl = tile.GetComponent<Tile>();
                 map[i][j] = tl;
                 tl.SetIndex(i,j);
-                
-                coordinateMap[i][j] = tile.transform.position;
+                tl.SetMap(map);
+                tl.prefabs = prefabs;
             }
         }
         mapObj.transform.rotation = Quaternion.Euler(0.0f,180.0f,0.0f);
 
+    }
+
+    public void UpdateTiles(){
+        for(int i = 0; i < map.Length; i++){
+            for(int j = 0; j < map[i].Length; j++){
+                Debug.Log("changing Tile: [" + i + ", "+ j+ "]");
+                map[i][j].ChangeTile(prefabs);
+            }
+        }
     }
 
     public static Tile GetTileByIndex(int[] ind){
