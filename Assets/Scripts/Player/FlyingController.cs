@@ -9,12 +9,19 @@ public class FlyingController : PlayerController
     [SerializeField] private float turnAcceleration = 6;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float extinguishStrength = 4.0f * 3.0f;
+    [SerializeField] private float tiltSpeed = 2;
+
 
     [SerializeField] private float flyingHeight = 3;
+
+    [SerializeField] private float minFlyingHeight = 0;
+    [SerializeField] private float maxFlyingHeight = 4;
 
     ParticleSystem ps;
 
     private Rigidbody2D rigidbody2D;
+    private float climbDir = 0;
+    private float tiltDir = 0;
 
     private void Start()
     {
@@ -29,6 +36,11 @@ public class FlyingController : PlayerController
     {
         Vector2 moveDir = this._moveDir;
 
+        if (moveDir.y > 0 && flyingHeight >= maxFlyingHeight || moveDir.y < 0 && flyingHeight <= minFlyingHeight)
+        {
+            moveDir.y = 0;
+        }
+
         flyingHeight += moveDir.y * Time.fixedDeltaTime * speed;
         transform.position += Vector3.forward * moveDir.y * Time.fixedDeltaTime * climbSpeed;
 
@@ -37,10 +49,13 @@ public class FlyingController : PlayerController
         Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.fixedDeltaTime);
 
         rigidbody2D.velocity = vel.normalized * Mathf.Lerp(lastVel, speed * (1 - moveDir.x * moveDir.x * .5f), acceleration*Time.fixedDeltaTime);
- 
+
+        climbDir = Mathf.Lerp(climbDir, moveDir.y, turnAcceleration * Time.deltaTime);
+        tiltDir = Mathf.Lerp(tiltDir, -moveDir.x, turnAcceleration * Time.deltaTime);
+
         transform.forward = rigidbody2D.velocity;
         //transform.right += Vector3.forward * moveDir.x * .3f;
-        transform.localEulerAngles = new Vector3(moveDir.y * 10, transform.localEulerAngles.y, -moveDir.x * 30);
+        transform.localEulerAngles = new Vector3(climbDir * 20, transform.localEulerAngles.y, tiltDir * 30);
      
         
         if (this._firePressed > 0.5)
