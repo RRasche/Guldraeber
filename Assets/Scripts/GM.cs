@@ -5,6 +5,7 @@ using UnityEngine;
 public class GM : MonoBehaviour
 {
     public static int burn_count = 0;
+    public static int dead_count = 0;
     // Start is called before the first frame update
     void Start()
     {
