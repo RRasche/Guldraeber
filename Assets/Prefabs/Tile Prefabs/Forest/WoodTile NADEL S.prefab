@@ -169,6 +169,9 @@ MonoBehaviour:
   burn_increase: 1
   type: 2
   burning_state: 0
+  extinguish_state: 0
+  life: 100
+  life_change: 0.1
   self_idx: {x: 0, y: 0}
 --- !u!1001 &1432182456370716741
 PrefabInstance:
@@ -232,7 +235,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c1b4c6454bfe44c4696f174b653aa460, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66dc448c3dc00814d83af20906cad0b4, type: 2}
+      objectReference: {fileID: 2100000, guid: ddc1becbbeb68b54eb64d4b685d7a2bf, type: 2}
     - target: {fileID: 919132149155446097, guid: c1b4c6454bfe44c4696f174b653aa460, type: 3}
       propertyPath: m_Name
       value: NADELWALD_S
