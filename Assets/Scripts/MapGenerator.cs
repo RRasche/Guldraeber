@@ -87,6 +87,10 @@ public class MapGenerator : MonoBehaviour
             map[t.self_idx.y][t.self_idx.x] = t;
             t.map = map;
             t.prefabs = prefabs;
+            if(t.is_burning((int)t.type))
+            {
+                GM.burn_count += 1;
+            }
         }
     }
 

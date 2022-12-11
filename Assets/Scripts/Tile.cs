@@ -44,14 +44,13 @@ public class Tile : MonoBehaviour
 
     }
 
-    [SerializeField]
-    public float burn_increase = 1.0f;
+    private float burn_increase = 0.5f;
     public TileType type;
     public float burning_state; 
     public float extinguish_state; 
     public float demolish_state;
     public float life = 100.0f;
-    private float life_change = 1.0f/15.0f;
+    private float life_change = 1.0f/30.0f;
 
     private int range;
     private int off_row;
@@ -102,7 +101,9 @@ public class Tile : MonoBehaviour
         max_x = map[0].Length; 
         burning_state = 0.0f;
         extinguish_state = 100.0f;
+        demolish_state = 100.0f;
         typeNr = (int)type;
+        basePos = transform.position;
     }
 
     void FixedUpdate()
@@ -112,7 +113,8 @@ public class Tile : MonoBehaviour
         {
             life -= life_change;
             if(life <= 0)
-            {
+            {   
+                GM.dead_count += 1;
                 type = (TileType)(typeNr + (typeNr <= 10 ? 8 : 4));
                 ChangeTile();
             }
@@ -145,6 +147,7 @@ public class Tile : MonoBehaviour
 
                             if(burn_tile.burning_state >= 100.0f)
                             {
+                                GM.burn_count += 1;
                                 Debug.Log("Burn");
                                 if(burn_tile_typeNr <= 6)
                                     burn_tile.type = ((TileType)(burn_tile_typeNr + 4));
@@ -165,14 +168,14 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private bool is_burning(int typeNr)
+    public bool is_burning(int typeNr)
     {
         return (typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22;
     }
 
     private bool is_wood(int typeNr)
     {
-        return (typeNr >= 3 && typeNr <= 6) || (typeNr >= 11 && typeNr <= 14);
+        return (typeNr >= 3 && typeNr <= 6) || (typeNr >= 11 && typeNr <= 18);
     }
     public void Extinguish_Me_a_BIT(float strength)
     {
@@ -186,6 +189,7 @@ public class Tile : MonoBehaviour
                 else
                     type = ((TileType )type + 2);
 
+                GM.burn_count -= 1;
                 ChangeTile();              
             }
 
@@ -193,16 +197,51 @@ public class Tile : MonoBehaviour
     }
     public void Demolish_Me_a_BIT(float strength) 
     {
+        RockTile();
+
         if(is_wood(typeNr))
         {
+            Debug.Log(demolish_state);
             demolish_state -= strength;
             if(demolish_state <= 0.0f)
             {
+                if (rockCoroutiine != null) {
+                    StopCoroutine(rockCoroutiine);
+                    transform.position = basePos;
+                }
                 type = TileType.DIRT;  
                 ChangeTile();              
             }
 
         }
+    }
+
+    public void RockTile() {
+        if (!isRocked) {
+            rockCoroutiine = rockTile();
+            StartCoroutine(rockCoroutiine);
+        }
+    }
+
+    
+    private bool isRocked = false;
+    private IEnumerator rockCoroutiine = null;
+    private Vector3 basePos;
+    private IEnumerator rockTile() {
+        isRocked = true;
+        float timeSinceStart = 0;
+
+        Vector3 basePos = GetComponentInChildren<MeshRenderer>().transform.position;
+
+        float duration = 0.4f;
+        while(timeSinceStart < duration) {
+            GetComponentInChildren<MeshRenderer>().transform.position = basePos + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized * 0.1f * (1 - timeSinceStart / duration);
+            timeSinceStart += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        GetComponentInChildren<MeshRenderer>().transform.position = basePos;
+        isRocked = false;
     }
 
     private void update_burn_idx(int range)
