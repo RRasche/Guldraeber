@@ -21,5 +21,11 @@ public class GM : MonoBehaviour
     {
         burning_text.text = burn_count.ToString();
         dead_text.text = burn_count.ToString();
+
+        if(burn_count <= 0)
+        {
+            //Win
+        }
+        
     }
 }
