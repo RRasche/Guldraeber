@@ -36,4 +36,12 @@ public class Player : MonoBehaviour
             controller.ChangeLookDir(context.ReadValue<Vector2>());
         }
     }
+
+    public void ChangeFireInput(InputAction.CallbackContext context)
+    {
+        if (controller)
+        {
+            controller.ChangeFireInput(context.ReadValue<float>());
+        }
+    }
 }
