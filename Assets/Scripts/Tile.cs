@@ -193,8 +193,12 @@ public class Tile : MonoBehaviour
     }
     public void Demolish_Me_a_BIT(float strength) 
     {
+        RockTile();
+        Debug.Log(typeNr);
+
         if(is_wood(typeNr))
         {
+            Debug.Log(demolish_state);
             demolish_state -= strength;
             if(demolish_state <= 0.0f)
             {
@@ -203,11 +207,6 @@ public class Tile : MonoBehaviour
             }
 
         }
-    }
-
-    public void Demolish_Me_a_BIT(float strength) {
-        //print(gameObject.name + " is feeling very demolished");
-        RockTile();
     }
 
     public void RockTile() {

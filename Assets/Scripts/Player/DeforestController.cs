@@ -6,7 +6,7 @@ public class DeforestController : DrivingController
 {
     [SerializeField] private string forestLayer = "Default";
     [SerializeField] private float deforesterDist = 0.5f;
-    [SerializeField] private float demolishStrength = 1;
+    [SerializeField] private float demolishStrength = 3;
     [SerializeField] private float demolishSpeedMultiplier = 0.3f;
     [SerializeField] private GameObject demolisherParticlesPrefab;
 
