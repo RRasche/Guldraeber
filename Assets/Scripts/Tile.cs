@@ -111,7 +111,8 @@ public class Tile : MonoBehaviour
         {
             life -= life_change;
             if(life <= 0)
-            {
+            {   
+                GM.burn_count += 1;
                 type = (TileType)(typeNr + (typeNr <= 10 ? 8 : 4));
                 ChangeTile();
             }
