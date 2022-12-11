@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
     public float extinguish_state; 
     public float demolish_state;
     public float life = 100.0f;
-    public float life_change = 1.0f/10.0f;
+    private float life_change = 1.0f/15.0f;
 
     private int range;
     private int off_row;
@@ -119,7 +119,7 @@ public class Tile : MonoBehaviour
 
             wind_direction = wind_controller.cur_wind_direction;
             
-            range = wind_direction.x > 0.8f ? 2 : 1;
+            range = wind_direction.x > 0.5f ? 2 : 1;
 
             for(int i_range = 1; i_range <= range; ++i_range)
             {
@@ -195,7 +195,7 @@ public class Tile : MonoBehaviour
     {
         if(is_wood(typeNr))
         {
-             demolish_state -= strength;
+            demolish_state -= strength;
             if(demolish_state <= 0.0f)
             {
                 type = TileType.DIRT;  

@@ -13,6 +13,7 @@ public class FireFightController : DrivingController
     [SerializeField] private string burningLayer = "Default";
 
     private Vector3 lastDir = Vector3.forward;
+    private Vector3 temp; 
 
     ParticleSystem ps;
 
@@ -29,9 +30,9 @@ public class FireFightController : DrivingController
         if (this._lookDir.sqrMagnitude != 0)
         {   
             //waterGun.up = this._lookDir.normalized;
-            waterGun.up = Vector3.Slerp(lastDir, this._lookDir.normalized * new Vector3(-1.0f, -1.0f, 1.0f), waterGunTurnSpeed * Time.fixedDeltaTime);
+            temp = Vector3.Slerp(lastDir, this._lookDir.normalized * new Vector3(-1.0f, -1.0f, 1.0f), waterGunTurnSpeed * Time.fixedDeltaTime);
             //print(waterGun.forward);
-            lastDir = new Vector3(waterGun.up.x, waterGun.up.y, 0.5f);
+            lastDir = new Vector3(temp.x, temp.y, 0.35f);
             waterGun.up = lastDir;
             //lastDir = waterGun.up;
         }
