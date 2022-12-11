@@ -42,7 +42,7 @@ public class DeforestController : DrivingController
         }*/
 
         if (this._firePressed > 0.5f) {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1.1f, LayerMask.GetMask(forestLayer));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, deforesterDist, LayerMask.GetMask(forestLayer));
 
             if (hit.collider != null && hit.collider.transform.parent != null) {
                 Tile tile = hit.collider.gameObject.GetComponentInParent<Tile>();
