@@ -31,7 +31,6 @@ public class DeforestController : DrivingController
                     tile.Demolish_Me_a_BIT(demolishStrength);
                     if (tile != _currentDemolishTile) {
                         _currentDemolishTile = tile;
-                        Debug.Log("babababababa");
                         demolisherParticles = Instantiate(demolisherParticlesPrefab, tile.transform.position, Quaternion.identity);
                     }
                 }
@@ -50,7 +49,9 @@ public class DeforestController : DrivingController
 
     void destroyParticles() {
         if (_currentDemolishTile != null) {
-            Destroy(demolisherParticles);
+            ParticleSystem.MainModule main = demolisherParticles.GetComponent<ParticleSystem>().main;
+            main.loop = false;
+            Destroy(demolisherParticles, 1);
         }
         _currentDemolishTile = null;
     }

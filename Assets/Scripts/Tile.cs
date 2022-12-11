@@ -157,7 +157,6 @@ public class Tile : MonoBehaviour
 
     public void RockTile() {
         if (!isRocked) {
-            Debug.Log("ROCK");
             StartCoroutine(rockTile());
         }
     }
