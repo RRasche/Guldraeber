@@ -102,7 +102,9 @@ public class Tile : MonoBehaviour
         max_x = map[0].Length; 
         burning_state = 0.0f;
         extinguish_state = 100.0f;
+        demolish_state = 100.0f;
         typeNr = (int)type;
+        basePos = transform.position;
     }
 
     void FixedUpdate()
@@ -172,7 +174,7 @@ public class Tile : MonoBehaviour
 
     private bool is_wood(int typeNr)
     {
-        return (typeNr >= 3 && typeNr <= 6) || (typeNr >= 11 && typeNr <= 14);
+        return (typeNr >= 3 && typeNr <= 6) || (typeNr >= 11 && typeNr <= 18);
     }
     public void Extinguish_Me_a_BIT(float strength)
     {
@@ -194,7 +196,6 @@ public class Tile : MonoBehaviour
     public void Demolish_Me_a_BIT(float strength) 
     {
         RockTile();
-        Debug.Log(typeNr);
 
         if(is_wood(typeNr))
         {
@@ -202,6 +203,10 @@ public class Tile : MonoBehaviour
             demolish_state -= strength;
             if(demolish_state <= 0.0f)
             {
+                if (rockCoroutiine != null) {
+                    StopCoroutine(rockCoroutiine);
+                    transform.position = basePos;
+                }
                 type = TileType.DIRT;  
                 ChangeTile();              
             }
@@ -211,12 +216,15 @@ public class Tile : MonoBehaviour
 
     public void RockTile() {
         if (!isRocked) {
-            StartCoroutine(rockTile());
+            rockCoroutiine = rockTile();
+            StartCoroutine(rockCoroutiine);
         }
     }
 
     
     private bool isRocked = false;
+    private IEnumerator rockCoroutiine = null;
+    private Vector3 basePos;
     private IEnumerator rockTile() {
         isRocked = true;
         float timeSinceStart = 0;

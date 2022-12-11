@@ -6,7 +6,7 @@ public class DeforestController : DrivingController
 {
     [SerializeField] private string forestLayer = "Default";
     [SerializeField] private float deforesterDist = 0.5f;
-    [SerializeField] private float demolishStrength = 3;
+    [SerializeField] private float demolishStrength = 0.3f;
     [SerializeField] private float demolishSpeedMultiplier = 0.3f;
     [SerializeField] private GameObject demolisherParticlesPrefab;
 
@@ -48,10 +48,11 @@ public class DeforestController : DrivingController
     }
 
     void destroyParticles() {
-        if (_currentDemolishTile != null) {
+        if (demolisherParticles != null) {
             ParticleSystem.MainModule main = demolisherParticles.GetComponent<ParticleSystem>().main;
             main.loop = false;
             Destroy(demolisherParticles, 1);
+            demolisherParticles = null;
         }
         _currentDemolishTile = null;
     }
