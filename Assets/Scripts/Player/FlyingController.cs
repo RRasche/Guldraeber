@@ -76,7 +76,6 @@ public class FlyingController : PlayerController
                 // OVER WATER TILE
                 waterAmount += fillingRate * Time.fixedDeltaTime;
                 waterAmount = Mathf.Clamp(waterAmount, 0, 1);
-                print("Adding water");
             }
         }
 
@@ -84,7 +83,6 @@ public class FlyingController : PlayerController
         if (this._firePressed > 0.5 && waterAmount > 0)
         {
             waterAmount -= wateringRate * Time.fixedDeltaTime;
-            print(waterAmount);
             var em = ps.emission;
             em.enabled = true;
             Vector2 pos_2D = new Vector2(transform.position.x, transform.position.y);
