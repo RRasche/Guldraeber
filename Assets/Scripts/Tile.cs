@@ -44,14 +44,13 @@ public class Tile : MonoBehaviour
 
     }
 
-    [SerializeField]
-    public float burn_increase = 1.0f;
+    private float burn_increase = 0.5f;
     public TileType type;
     public float burning_state; 
     public float extinguish_state; 
     public float demolish_state;
     public float life = 100.0f;
-    private float life_change = 1.0f/15.0f;
+    private float life_change = 1.0f/30.0f;
 
     private int range;
     private int off_row;
