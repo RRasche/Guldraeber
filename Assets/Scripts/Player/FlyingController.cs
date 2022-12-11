@@ -8,9 +8,11 @@ public class FlyingController : PlayerController
     [SerializeField] private float climbSpeed = 1;
     [SerializeField] private float turnAcceleration = 6;
     [SerializeField] private float acceleration = 1;
-    [SerializeField] private float extinguishStrength = 3;
+    [SerializeField] private float extinguishStrength = 4.0f * 3.0f;
 
     [SerializeField] private float flyingHeight = 3;
+
+    ParticleSystem ps;
 
     private Rigidbody2D rigidbody2D;
 
@@ -19,6 +21,7 @@ public class FlyingController : PlayerController
         rigidbody2D = GetComponent<Rigidbody2D>();
         transform.position += Vector3.back * flyingHeight;
         rigidbody2D.velocity = Vector3.right * speed;
+        ps = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -41,7 +44,9 @@ public class FlyingController : PlayerController
      
         
         if (this._firePressed > 0.5)
-        {
+        {   
+            var em = ps.emission;
+            em.enabled = true;
             Vector2 pos_2D = new Vector2(transform.position.x, transform.position.y);
             //MapGenerator.GetTileAtPosition(transform.position).Extinguish_Me_a_BIT(extinguishStrength);
             RaycastHit2D hit = Physics2D.Raycast(pos_2D, pos_2D + Vector2.up * 0.1f, Physics2D.DefaultRaycastLayers); 
@@ -54,6 +59,11 @@ public class FlyingController : PlayerController
                 }
             }
             
+        }
+        else
+        {
+            var em = ps.emission;
+            em.enabled = false;
         }
 
     }

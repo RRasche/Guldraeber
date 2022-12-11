@@ -14,6 +14,12 @@ public class FireFightController : DrivingController
 
     private Vector2 lastDir = Vector2.up;
 
+    ParticleSystem ps;
+
+    void Start()
+    {
+        ps = GetComponentInChildren<ParticleSystem>();
+    }
 
     void FixedUpdate()
     {
@@ -32,7 +38,6 @@ public class FireFightController : DrivingController
         }
         if (this._firePressed > .5f)
         {
-            ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
             var em = ps.emission;
             em.enabled = true;
             Vector2 pos_2D = new Vector2(transform.position.x, transform.position.y);
@@ -52,7 +57,6 @@ public class FireFightController : DrivingController
         }
         else
         {
-            ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
             var em = ps.emission;
             em.enabled = false;
         }

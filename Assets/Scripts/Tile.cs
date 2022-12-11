@@ -181,7 +181,11 @@ public class Tile : MonoBehaviour
             extinguish_state -= strength;
             if(extinguish_state <= 0.0f)
             {
-                type = TileType.DIRT;
+                if(typeNr <= 10)
+                    type = ((TileType)(type + 4));
+                else
+                    type = ((TileType )type + 2);
+
                 ChangeTile();              
             }
 
@@ -194,11 +198,7 @@ public class Tile : MonoBehaviour
              demolish_state -= strength;
             if(demolish_state <= 0.0f)
             {
-                if(typeNr <= 10)
-                    type = ((TileType)(type + 4));
-                else
-                    type = ((TileType )type + 2);
-
+                type = TileType.DIRT;  
                 ChangeTile();              
             }
 
