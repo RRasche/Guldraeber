@@ -12,12 +12,14 @@ public class FireFightController : DrivingController
 
     [SerializeField] private string burningLayer = "Default";
 
-    private Vector2 lastDir = Vector2.up;
+    private Vector3 lastDir = Vector3.forward;
 
     ParticleSystem ps;
 
-    void Start()
+    private void Start()
     {
+        this.rb2D = GetComponent<Rigidbody2D>();
+        transform.up = Vector2.up;
         ps = GetComponentInChildren<ParticleSystem>();
     }
 
@@ -25,12 +27,13 @@ public class FireFightController : DrivingController
     {
         drive();
         if (this._lookDir.sqrMagnitude != 0)
-        {
+        {   
             //waterGun.up = this._lookDir.normalized;
-            waterGun.up = Vector3.Slerp(waterGun.up, this._lookDir.normalized, waterGunTurnSpeed * Time.fixedDeltaTime);
+            waterGun.up = Vector3.Slerp(lastDir, this._lookDir.normalized * new Vector3(-1.0f, -1.0f, 1.0f), waterGunTurnSpeed * Time.fixedDeltaTime);
             //print(waterGun.forward);
-            waterGun.up = new Vector3(waterGun.up.x, waterGun.up.y, 0);
-            lastDir = waterGun.up;
+            lastDir = new Vector3(waterGun.up.x, waterGun.up.y, 0.5f);
+            waterGun.up = lastDir;
+            //lastDir = waterGun.up;
         }
         else
         {

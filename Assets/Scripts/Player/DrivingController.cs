@@ -9,11 +9,11 @@ public class DrivingController : PlayerController
     [SerializeField] private float turnAcceleration = 6;
 
 
-    private Rigidbody2D rigidbody2D;
+    protected Rigidbody2D rb2D;
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         transform.up = Vector2.up;
     }
 
@@ -21,12 +21,12 @@ public class DrivingController : PlayerController
     {
         Vector2 moveDir = this._moveDir;
 
-        Vector2 oldVel = rigidbody2D.velocity;
+        Vector2 oldVel = rb2D.velocity;
         Vector2 targetVel = moveDir * speed;
 
         Vector2 vel = Vector2.Lerp(oldVel, targetVel, acceleration * Time.deltaTime);
 
-        rigidbody2D.velocity = vel;
+        rb2D.velocity = vel;
         if (moveDir.sqrMagnitude > 0)
         {
             transform.up = Vector3.Slerp(transform.up, moveDir, turnAcceleration * Time.deltaTime);
