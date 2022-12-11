@@ -190,6 +190,8 @@ public class Tile : MonoBehaviour
                     type = ((TileType )type + 2);
 
                 GM.burn_count -= 1;
+                GameObject go = Instantiate(GM.instance.steamAnim, transform.position, Quaternion.identity);
+                Destroy(go, 11);
                 ChangeTile();              
             }
 

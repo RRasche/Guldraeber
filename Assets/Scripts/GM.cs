@@ -10,10 +10,14 @@ public class GM : MonoBehaviour
 
     public TMP_Text burning_text;
     public TMP_Text dead_text;
+
+    public GameObject steamAnim;
+
+    public static GM instance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
