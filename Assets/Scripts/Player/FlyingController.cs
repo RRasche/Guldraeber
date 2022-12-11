@@ -17,6 +17,13 @@ public class FlyingController : PlayerController
     [SerializeField] private float minFlyingHeight = 0;
     [SerializeField] private float maxFlyingHeight = 4;
 
+    [SerializeField] private GameObject bucket;
+
+    [SerializeField] private float wateringRate = .2f;
+    [SerializeField] private float fillingRate = 2.0f;
+    private float waterAmount = 1;
+
+
     ParticleSystem ps;
 
     private Rigidbody2D rigidbody2D;
@@ -44,6 +51,7 @@ public class FlyingController : PlayerController
         flyingHeight += moveDir.y * Time.fixedDeltaTime * speed;
         transform.position += Vector3.forward * moveDir.y * Time.fixedDeltaTime * climbSpeed;
 
+        bucket.transform.localScale = Vector3.one * Mathf.Lerp(.3f, 2, waterAmount);
 
         float lastVel = rigidbody2D.velocity.magnitude;
         Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.fixedDeltaTime);
@@ -56,15 +64,32 @@ public class FlyingController : PlayerController
         transform.forward = rigidbody2D.velocity;
         //transform.right += Vector3.forward * moveDir.x * .3f;
         transform.localEulerAngles = new Vector3(climbDir * 20, transform.localEulerAngles.y, tiltDir * 30);
-     
-        
-        if (this._firePressed > 0.5)
-        {   
+
+
+        //Fill water
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (Vector2)transform.position + Vector2.up * 0.1f, LayerMask.GetMask("WaterTile"));
+        if (hit.collider != null)
+        {
+            Tile tile = hit.collider.GetComponentInParent<Tile>();
+            if (tile.type == Tile.TileType.WATER)
+            {
+                // OVER WATER TILE
+                waterAmount += fillingRate * Time.fixedDeltaTime;
+                waterAmount = Mathf.Clamp(waterAmount, 0, 1);
+                print("Adding water");
+            }
+        }
+
+        // Fire water
+        if (this._firePressed > 0.5 && waterAmount > 0)
+        {
+            waterAmount -= wateringRate * Time.fixedDeltaTime;
+            print(waterAmount);
             var em = ps.emission;
             em.enabled = true;
             Vector2 pos_2D = new Vector2(transform.position.x, transform.position.y);
             //MapGenerator.GetTileAtPosition(transform.position).Extinguish_Me_a_BIT(extinguishStrength);
-            RaycastHit2D hit = Physics2D.Raycast(pos_2D, pos_2D + Vector2.up * 0.1f, Physics2D.DefaultRaycastLayers); 
+            hit = Physics2D.Raycast(pos_2D, pos_2D + Vector2.up * 0.1f, Physics2D.DefaultRaycastLayers); 
             if (hit.collider != null && hit.collider.transform.parent != null)
             {
                 Tile tile = hit.collider.gameObject.GetComponentInParent<Tile>();
