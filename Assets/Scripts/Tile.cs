@@ -44,14 +44,13 @@ public class Tile : MonoBehaviour
 
     }
 
-    [SerializeField]
-    public float burn_increase = 1.0f;
+    private float burn_increase = 0.5f;
     public TileType type;
     public float burning_state; 
     public float extinguish_state; 
     public float demolish_state;
     public float life = 100.0f;
-    private float life_change = 1.0f/15.0f;
+    private float life_change = 1.0f/30.0f;
 
     private int range;
     private int off_row;
@@ -114,7 +113,8 @@ public class Tile : MonoBehaviour
         {
             life -= life_change;
             if(life <= 0)
-            {
+            {   
+                GM.dead_count += 1;
                 type = (TileType)(typeNr + (typeNr <= 10 ? 8 : 4));
                 ChangeTile();
             }
@@ -147,6 +147,7 @@ public class Tile : MonoBehaviour
 
                             if(burn_tile.burning_state >= 100.0f)
                             {
+                                GM.burn_count += 1;
                                 Debug.Log("Burn");
                                 if(burn_tile_typeNr <= 6)
                                     burn_tile.type = ((TileType)(burn_tile_typeNr + 4));
@@ -167,7 +168,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private bool is_burning(int typeNr)
+    public bool is_burning(int typeNr)
     {
         return (typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22;
     }
@@ -188,6 +189,7 @@ public class Tile : MonoBehaviour
                 else
                     type = ((TileType )type + 2);
 
+                GM.burn_count -= 1;
                 ChangeTile();              
             }
 
