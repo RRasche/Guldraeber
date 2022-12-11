@@ -39,7 +39,8 @@ public class Tile : MonoBehaviour
         DEAD_VILLAGE_SMALL = 25,
         DEAD_VILLAGE_LARGE = 26,
         MOUNTAIN_SMALL = 27,
-        MOUNTAIN_LARGE = 28
+        MOUNTAIN_LARGE = 28,
+        DIRT = 29
 
     }
 
@@ -48,6 +49,7 @@ public class Tile : MonoBehaviour
     public TileType type;
     public float burning_state; 
     public float extinguish_state; 
+    public float demolish_state;
     public float life = 100.0f;
     public float life_change = 1.0f/10.0f;
 
@@ -167,12 +169,30 @@ public class Tile : MonoBehaviour
     {
         return (typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22;
     }
+
+    private bool is_wood(int typeNr)
+    {
+        return (typeNr >= 3 && typeNr <= 6) || (typeNr >= 11 && typeNr <= 14);
+    }
     public void Extinguish_Me_a_BIT(float strength)
     {
         if(is_burning(typeNr))
         {
             extinguish_state -= strength;
             if(extinguish_state <= 0.0f)
+            {
+                type = TileType.DIRT;
+                ChangeTile();              
+            }
+
+        }
+    }
+    public void Demolish_Me_a_BIT(float strength) 
+    {
+        if(is_wood(typeNr))
+        {
+             demolish_state -= strength;
+            if(demolish_state <= 0.0f)
             {
                 if(typeNr <= 10)
                     type = ((TileType)(type + 4));
