@@ -22,18 +22,18 @@ public class FlyingController : PlayerController
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 moveDir = this._moveDir;
 
-        flyingHeight += moveDir.y * Time.deltaTime * speed;
-        transform.position += Vector3.forward * moveDir.y * Time.deltaTime * climbSpeed;
+        flyingHeight += moveDir.y * Time.fixedDeltaTime * speed;
+        transform.position += Vector3.forward * moveDir.y * Time.fixedDeltaTime * climbSpeed;
 
 
         float lastVel = rigidbody2D.velocity.magnitude;
-        Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.deltaTime);
+        Vector2 vel = rotate(rigidbody2D.velocity, -moveDir.x * turnAcceleration * Time.fixedDeltaTime);
 
-        rigidbody2D.velocity = vel.normalized * Mathf.Lerp(lastVel, speed * (1 - moveDir.x * moveDir.x * .5f), acceleration*Time.deltaTime);
+        rigidbody2D.velocity = vel.normalized * Mathf.Lerp(lastVel, speed * (1 - moveDir.x * moveDir.x * .5f), acceleration*Time.fixedDeltaTime);
  
         transform.forward = rigidbody2D.velocity;
         //transform.right += Vector3.forward * moveDir.x * .3f;
@@ -42,7 +42,18 @@ public class FlyingController : PlayerController
         
         if (this._firePressed > 0.5)
         {
-            MapGenerator.GetTileAtPosition(transform.position).Extinguish_Me_a_BIT(extinguishStrength);
+            Vector2 pos_2D = new Vector2(transform.position.x, transform.position.y);
+            //MapGenerator.GetTileAtPosition(transform.position).Extinguish_Me_a_BIT(extinguishStrength);
+            RaycastHit2D hit = Physics2D.Raycast(pos_2D, pos_2D + Vector2.up * 0.1f, Physics2D.DefaultRaycastLayers); 
+            if (hit.collider != null && hit.collider.transform.parent != null)
+            {
+                Tile tile = hit.collider.gameObject.GetComponentInParent<Tile>();
+                if(tile != null)
+                {
+                    tile.Extinguish_Me_a_BIT(extinguishStrength);
+                }
+            }
+            
         }
 
     }

@@ -48,6 +48,8 @@ public class Tile : MonoBehaviour
     public TileType type;
     public float burning_state; 
     public float extinguish_state; 
+    public float life = 100.0f;
+    public float life_change = 1.0f/10.0f;
 
     private int range;
     private int off_row;
@@ -106,6 +108,13 @@ public class Tile : MonoBehaviour
         //burning tiles are 7,8,9,10,21,22
         if((typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22)
         {
+            life -= life_change;
+            if(life <= 0)
+            {
+                type = (TileType)(typeNr + (typeNr <= 10 ? 8 : 4));
+                ChangeTile();
+            }
+
             wind_direction = wind_controller.cur_wind_direction;
             
             range = wind_direction.x > 0.8f ? 2 : 1;
@@ -163,7 +172,6 @@ public class Tile : MonoBehaviour
         if(is_burning(typeNr))
         {
             extinguish_state -= strength;
-            Debug.Log(extinguish_state);
             if(extinguish_state <= 0.0f)
             {
                 if(typeNr <= 10)
