@@ -346,6 +346,131 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1071860602
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8732714556474211122, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556474211122, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.g
+      value: 0.031787723
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556474211122, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556474211127, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Name
+      value: Boot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556505782218, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2878426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556505782218, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2878426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556505782218, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714556505782223, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Name
+      value: "L\xF6schtruck"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557099093596, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557176555435, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Name
+      value: Flugzeug
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557176555446, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.b
+      value: 0.35686272
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557176555446, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.g
+      value: 0.70960987
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557176555446, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.r
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184282, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Name
+      value: UIMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 602.71674
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 222.59256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.941772
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714557929184283, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714558397821761, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Name
+      value: "Holzf\xE4ller"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714558397821772, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5943396
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714558397821772, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732714558397821772, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
+      propertyPath: m_Color.r
+      value: 0.56083566
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa633b2f5b78d8744a70361ce0591171, type: 3}
 --- !u!1 &1742750274
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 308459109378533122, guid: d199e3656a9e5cb4ba546a31627a0e17, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d199e3656a9e5cb4ba546a31627a0e17, type: 3}
