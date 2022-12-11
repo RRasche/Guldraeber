@@ -30,6 +30,7 @@ public class DeforestController : DrivingController
                 if (tile != null) {
                     tile.Demolish_Me_a_BIT(demolishStrength);
                     if (tile != _currentDemolishTile) {
+                        if (demolisherParticles) {destroyParticles();}
                         _currentDemolishTile = tile;
                         demolisherParticles = Instantiate(demolisherParticlesPrefab, tile.transform.position, Quaternion.identity);
                     }
