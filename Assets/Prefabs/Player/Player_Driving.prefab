@@ -186,3 +186,6 @@ MonoBehaviour:
   turnAcceleration: 6
   forestLayer: Default
   deforesterDist: 0.5
+  demolishStrength: 1
+  demolishSpeedMultiplier: 0.3
+  demolisherParticlesPrefab: {fileID: 2853564478015079992, guid: a9c29e0225472de4dbeff63bdd31b075, type: 3}

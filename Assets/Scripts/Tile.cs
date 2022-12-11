@@ -151,7 +151,34 @@ public class Tile : MonoBehaviour
     }
 
     public void Demolish_Me_a_BIT(float strength) {
-        print(gameObject.name + " is feeling very demolished");
+        //print(gameObject.name + " is feeling very demolished");
+        RockTile();
+    }
+
+    public void RockTile() {
+        if (!isRocked) {
+            Debug.Log("ROCK");
+            StartCoroutine(rockTile());
+        }
+    }
+
+    
+    private bool isRocked = false;
+    private IEnumerator rockTile() {
+        isRocked = true;
+        float timeSinceStart = 0;
+
+        Vector3 basePos = GetComponentInChildren<MeshRenderer>().transform.position;
+
+        float duration = 0.4f;
+        while(timeSinceStart < duration) {
+            GetComponentInChildren<MeshRenderer>().transform.position = basePos + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized * 0.1f * (1 - timeSinceStart / duration);
+            timeSinceStart += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        GetComponentInChildren<MeshRenderer>().transform.position = basePos;
+        isRocked = false;
     }
 
     private void update_burn_idx(int range)
