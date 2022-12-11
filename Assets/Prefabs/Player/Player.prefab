@@ -180,10 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   playerPrefabs:
+  - {fileID: 7161814176645196761, guid: c270295d796cedb40b11dab1a7d500f7, type: 3}
   - {fileID: 7161814176645196761, guid: fdd7d04f84352ca49870cba70a2baa48, type: 3}
   - {fileID: 7161814176645196761, guid: fdd7d04f84352ca49870cba70a2baa48, type: 3}
   - {fileID: 7161814176645196761, guid: a7b49913698567f48b2560a74ab58071, type: 3}
-  - {fileID: 7161814176645196761, guid: 2c8bc8ed1a177f84ca878db017bdfdc6, type: 3}
   playerCamera: {fileID: 7998891971673416604}
 --- !u!114 &648709075022058295
 MonoBehaviour:
