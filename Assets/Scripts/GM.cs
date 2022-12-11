@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour
 {
@@ -21,5 +22,12 @@ public class GM : MonoBehaviour
     {
         burning_text.text = burn_count.ToString();
         dead_text.text = burn_count.ToString();
+
+        if(burn_count <= 0)
+        {
+            PlayerPrefs.SetInt("deadTrees", dead_count);
+            SceneManager.LoadScene(2);
+        }
+        
     }
 }
