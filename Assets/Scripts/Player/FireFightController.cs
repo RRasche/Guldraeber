@@ -30,9 +30,9 @@ public class FireFightController : DrivingController
         if (this._lookDir.sqrMagnitude != 0)
         {   
             //waterGun.up = this._lookDir.normalized;
-            temp = Vector3.Slerp(lastDir, this._lookDir.normalized * new Vector3(-1.0f, -1.0f, 1.0f), waterGunTurnSpeed * Time.fixedDeltaTime);
+            temp = Vector3.Slerp(lastDir, this._lookDir.normalized, waterGunTurnSpeed * Time.fixedDeltaTime);
             //print(waterGun.forward);
-            lastDir = new Vector3(temp.x, temp.y, 0.35f);
+            lastDir = new Vector3(temp.x, temp.y, 0);
             waterGun.up = lastDir;
             //lastDir = waterGun.up;
         }
