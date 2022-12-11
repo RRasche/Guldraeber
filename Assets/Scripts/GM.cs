@@ -24,14 +24,16 @@ public class GM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // burning_text.text = burn_count.ToString();
-       // dead_text.text = burn_count.ToString();
+       burning_text.text = burn_count.ToString();
+       dead_text.text = burn_count.ToString();
 
-        if(burn_count <= 0)
+        if(burn_count <= 0 || Input.GetKeyDown(KeyCode.K))
         {
             PlayerPrefs.SetInt("deadTrees", dead_count);
             SceneManager.LoadScene(2);
         }
+
+
         
     }
 }
