@@ -5045,7 +5045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7161814176645196761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5108,6 +5108,7 @@ MonoBehaviour:
   turnAcceleration: 6
   waterGun: {fileID: 5558568056750001723}
   waterGunTurnSpeed: 6
+  waterGunStrength: 3
   waterGunRange: 5
   burningLayer: Default
 --- !u!1 &7496461376256006915

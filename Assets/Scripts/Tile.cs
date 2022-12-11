@@ -47,11 +47,13 @@ public class Tile : MonoBehaviour
     public float burn_increase = 1.0f;
     public TileType type;
     public float burning_state; 
+    public float extinguish_state; 
 
     private int range;
     private int off_row;
     private int max_x;
     private int max_y;
+    private int typeNr;
 
     private int neighbor_case;
     public Vector2Int self_idx = new Vector2Int(0, 0);
@@ -95,12 +97,13 @@ public class Tile : MonoBehaviour
         max_y = map.Length;
         max_x = map[0].Length; 
         burning_state = 0.0f;
+        extinguish_state = 100.0f;
+        typeNr = (int)type;
     }
 
     void FixedUpdate()
     {
         //burning tiles are 7,8,9,10,21,22
-        int typeNr = (int)type;
         if((typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22)
         {
             wind_direction = wind_controller.cur_wind_direction;
@@ -132,10 +135,15 @@ public class Tile : MonoBehaviour
                             if(burn_tile.burning_state >= 100.0f)
                             {
                                 Debug.Log("Burn");
-                                if(burn_tile_typeNr <= 14)
+                                if(burn_tile_typeNr <= 6)
                                     burn_tile.type = ((TileType)(burn_tile_typeNr + 4));
-                                else
+                                else if(burn_tile_typeNr <= 14)
+                                    burn_tile.type = ((TileType )burn_tile_typeNr - 4);
+                                else if(burn_tile_typeNr <= 20)
                                     burn_tile.type = ((TileType )burn_tile_typeNr + 2);
+                                else if(burn_tile_typeNr <= 24)
+                                    burn_tile.type = ((TileType )burn_tile_typeNr - 2);
+                                
                                 burn_tile.ChangeTile();
                             }      
                         }
@@ -146,9 +154,27 @@ public class Tile : MonoBehaviour
         }
     }
 
+    private bool is_burning(int typeNr)
+    {
+        return (typeNr >= 7 && typeNr <=10) || typeNr == 21 || typeNr == 22;
+    }
     public void Extinguish_Me_a_BIT(float strength)
     {
-        print(gameObject.name + " is feeling very extinguished");
+        if(is_burning(typeNr))
+        {
+            extinguish_state -= strength;
+            Debug.Log(extinguish_state);
+            if(extinguish_state <= 0.0f)
+            {
+                if(typeNr <= 10)
+                    type = ((TileType)(type + 4));
+                else
+                    type = ((TileType )type + 2);
+
+                ChangeTile();              
+            }
+
+        }
     }
 
     private void update_burn_idx(int range)

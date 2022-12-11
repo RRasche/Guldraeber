@@ -64,8 +64,10 @@ public class MapGenerator : MonoBehaviour
 
     public static Tile GetTileAtPosition(Vector2 pos)
     {
-        // TODO: Implement
-        return map[1000][1000];
+        int y = Mathf.RoundToInt(pos.y * 2.0f/3.0f);
+        int x = Mathf.RoundToInt((pos.x - Mathf.Sqrt(3.0f)/2.0f * (y % 2)) / Mathf.Sqrt(3));
+    
+        return map[y][x];
     }
 
     public static Tile GetTileByIndex(Vector2Int ind){
