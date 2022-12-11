@@ -102,7 +102,10 @@ MonoBehaviour:
   - {fileID: 6877393147656916345, guid: 8cf606f6f681dc042b6e425daefa4e19, type: 3}
   - {fileID: 465532928029214635}
   - {fileID: 6877393147656916345, guid: 1a313e3e7906578448e8f014f3f03029, type: 3}
+  burn_increase: 1
   type: 2
+  burning_state: 0
+  self_idx: {x: 0, y: 0}
 --- !u!1001 &9089961119143814690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d9d959ff04ab87446887d371181483f2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da64429d19feeff4098149a054f81c5d, type: 2}
     - target: {fileID: 919132149155446097, guid: d9d959ff04ab87446887d371181483f2, type: 3}
       propertyPath: m_Name
       value: NADELWALD_B_BURN
