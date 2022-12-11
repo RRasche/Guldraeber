@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneStateManager : MonoBehaviour
 {
     public GameObject credits;
+    public GameObject tutorial;
 
     public void LoadScene(int sceneIndex)
     {
@@ -14,8 +15,13 @@ public class SceneStateManager : MonoBehaviour
     }
 
     public void toggleCredits(){
-        Debug.Log("ToggleCredits");
+         tutorial.SetActive( false);
         credits.SetActive( !credits.activeSelf);
+    }
+
+    public void toggleTutorial(){
+        credits.SetActive( false);
+        tutorial.SetActive( !tutorial.activeSelf);
     }
 
     public void ExitGame()
