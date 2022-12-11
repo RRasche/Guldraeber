@@ -10,7 +10,6 @@ public class DrivingController : PlayerController
 
 
     protected Rigidbody2D rb2D;
-    private Vector2 temp;
 
     private void Start()
     {
@@ -30,8 +29,12 @@ public class DrivingController : PlayerController
         rb2D.velocity = vel;
         if (moveDir.sqrMagnitude > 0)
         {
-            temp = Vector3.Slerp(transform.up, moveDir, turnAcceleration * Time.deltaTime);
-            transform.up = new Vector3(temp.x, temp.y, 0);
+            Vector2 temp = Vector3.Slerp(transform.up, moveDir, turnAcceleration * Time.deltaTime).normalized;
+            if (Mathf.Abs(temp.y) > .999)
+            {
+                temp.x = .01f;
+            }
+            transform.up = new Vector3(temp.x, temp.y, 0).normalized;
         }
 
     }
