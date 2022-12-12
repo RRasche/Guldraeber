@@ -5033,7 +5033,7 @@ GameObject:
   - component: {fileID: 7161814176645196763}
   - component: {fileID: 6373243994765925608}
   - component: {fileID: 3963906153749768280}
-  - component: {fileID: 5513208714112923699}
+  - component: {fileID: 6550854480084932250}
   m_Layer: 8
   m_Name: Player_Swim
   m_TagString: Untagged
@@ -5094,7 +5094,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &5513208714112923699
+--- !u!114 &6550854480084932250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5103,7 +5103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7161814176645196761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1bc6b03481ac24d9e97eb8979005df, type: 3}
+  m_Script: {fileID: 11500000, guid: a5dae5ea4449a7043941d3af69c66683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
-    [SerializeField] private GameObject[] playerPrefabs;
 
     [SerializeField] private Camera playerCamera;
 
@@ -17,7 +16,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        GameObject playerController = Instantiate(playerPrefabs[UserIndex], transform) as GameObject;
+        GameObject playerController = Instantiate(PlayerManager.Instance.controllerPrefabs[UserIndex], transform) as GameObject;
         controller = playerController.GetComponent<PlayerController>();
         this.GetComponentInChildren<CameraMovement>().setPlayerTransform(playerController.transform);
     }
