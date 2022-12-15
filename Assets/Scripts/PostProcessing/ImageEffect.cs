@@ -21,7 +21,10 @@ public class ImageEffect : MonoBehaviour
             Graphics.Blit(src, dst);
             return;
         }
+
+        RenderTexture rt = RenderTexture.GetTemporary(src.width, src.height);
         
-        Graphics.Blit(src, dst, effectMaterial);
+        Graphics.Blit(src, rt, effectMaterial, 0);
+        Graphics.Blit(rt, dst, effectMaterial, 1);
     }
 }
